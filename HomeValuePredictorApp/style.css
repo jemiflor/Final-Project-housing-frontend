@@ -1,0 +1,38 @@
+* {
+    
+    font-family: 'Oxygen', 'sans-serif';
+    /* color:#616971; */
+}
+
+body, html, #map
+{
+  height: 88%;
+}
+
+.header h1{
+    font-weight: 800; color: aliceblue;
+}
+
+.margin-neg-3 {
+    margin-top: -3rem !important;
+}
+
+.jimpestimate {
+    font-weight: bolder;
+    font-stretch: extra-expanded;
+    color: rebeccapurple;
+    font-size: 5rem;
+}
+
+.jimpestimate-label {
+    font-weight: bolder;
+    font-stretch: extra-expanded;
+    color: lime;
+    font-size: 2rem;
+}
+
+.jimpestimate-result {
+    visibility: hidden;
+}
+
+

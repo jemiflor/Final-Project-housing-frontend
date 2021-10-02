@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>UNW Bootcamp 2021: Opioid Crisis Statistical Visualizions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:300,400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira Sans:300,400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+</head>
+<body>
+  <div class="wrapper">
+    <!--Header Start-->
+    <div class="row m-3 my-4">
+      <div class="bg-dark p-5 rounded-lg text-center header">
+        <h1 class="display-4">CA Home Value Predictor</h1>
+        <p class="lead text-info">JIMPestimate</p>
+        <small class="text-muted">Irina Gasnikova, Jemima Florence, Matt Rentner, Patrick Barrett</small>
+      </div>
+    </div>
+    <!--Header Start--> 
+    
+    <!--Tab Start-->
+    <div class="row m-3 my-4">
+      <div class="col-sm-7">
+        <form class="row g-3 needs-validation" novalidate>
+          <div class="mb-3 row">
+            <label for="" class="col-sm-2 col-form-label">Age of the House</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="txtHousingAge" required>
+              <div class="invalid-feedback">
+                Required
+              </div>
+            </div>
+          </div>   
+          <div class="mb-3 row">
+            <label for="" class="col-sm-2 col-form-label">Rooms per household</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="txtRoomsPerHouseHold" required>
+              <div class="invalid-feedback">
+                Required
+              </div>
+            </div>
+          </div>  
+          <div class="mb-3 row">
+            <label for="" class="col-sm-2 col-form-label">Median Income</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="txtMedianIncome" required>
+              <div class="invalid-feedback">
+                Required
+              </div>
+            </div>
+          </div>  
+          <div class="mb-3 row">
+            <label for="" class="col-sm-2 col-form-label">Home Area (sqft)</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="txtHomeArea" required>
+              <div class="invalid-feedback">
+                Required
+              </div>
+            </div>
+          </div>  
+          <div class="mb-3 row">
+            <label for="" class="col-sm-2 col-form-label">Is Home Located Inland</label>
+            <div class="col-sm-10">
+              <select id="selectInland" class="form-select" required>
+                <option selected disabled value="">Choose...</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
+              <div class="invalid-feedback">
+                Required
+              </div>
+            </div>
+          </div>    
+          <div class="mb-3 row">
+            <label for="" class="col-sm-2 col-form-label">Is Home Located On a Island?</label>
+            <div class="col-sm-10">
+              <select id="selectIsland" class="form-select" required>
+                <option selected disabled value="">Choose...</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
+              <div class="invalid-feedback">
+                Required
+              </div>
+            </div>
+          </div>      
+          <div class="mb-3 row">
+            <label for="" class="col-sm-2 col-form-label">Is Home Located By a Bay?</label>
+            <div class="col-sm-10">
+              <select id="selectBay" class="form-select" required>
+                <option selected disabled value="">Choose...</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
+              <div class="invalid-feedback">
+                Required
+              </div>
+            </div>
+          </div>   
+          <div class="mb-3 row">
+            <label for="" class="col-sm-2 col-form-label">Is Home Located By The Ocean?</label>
+            <div class="col-sm-10">
+              <select id="selectOcean" class="form-select" required>
+                <option selected disabled value="">Choose...</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
+              <div class="invalid-feedback">
+                Required
+              </div>
+            </div>
+          </div>   
+          <div class="mb-3 row">
+            <label for="" class="col-sm-2 col-form-label">Less Than 1 Hr From The Ocean?</label>
+            <div class="col-sm-10">
+              <select id="selectOneHr" class="form-select" required>
+                <option selected disabled value="">Choose...</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
+              <div class="invalid-feedback">
+                Required
+              </div>
+            </div>
+          </div> 
+          <div class="mb-3 row">
+            <label for="" class="col-sm-9 col-form-label"></label>
+            <div class="col-sm-3">
+              <button id="btnJimpEstimate" type="button" class="btn btn-primary float-end">Get Home Value</button>
+            </div>
+          </div>              
+        </form>
+      </div>
+      <div class="col-sm-5 jimpestimate-result" id="result">
+        <label class="jimpestimate-label">Estimated Home Value</label>
+        <input type="text" readonly class="form-control-plaintext jimpestimate" id="predictedValue" value="$233,000.00">
+      </div>
+      
+    </div>
+    <!--Tab End-->   
+
+
+  </div>  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <script src="app.js"></script>
+</body>
+</html>
