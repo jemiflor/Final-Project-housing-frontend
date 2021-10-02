@@ -9,27 +9,36 @@ function GetJIMPestimateValue(event){
 	//Get the input for the predictor model
 	var housingAge = d3.select("#txtHousingAge").property('value');
 	var roomsPerHousehold = d3.select("#txtRoomsPerHouseHold").property('value');
-	var medianIncome = d3.select("#txtMedianIncome").property('value');
-	var homeArea = d3.select("#txtHomeArea").property('value');
-	var inland = d3.select("#selectInland").property('value');
-	var island = d3.select("#selectIsland").property('value');
-	var nearBay = d3.select("#selectBay").property('value');
-	var nearOcean = d3.select("#selectOcean").property('value');
-	var lessThan1Hr = d3.select("#selectOneHr").property('value');
+	var oceanProximity = d3.select("#selectOceanProximity").property('value');
+	var houseAgeSq = parseInt(housingAge) * parseInt(housingAge);
+
+	var medianIncome = 0;
+	if (oceanProximity == 1){
+		medianIncome = 3.208996382;
+	} else if (oceanProximity == 2) {
+		medianIncome = 2.74442		;
+	} else if (oceanProximity == 3) {
+		medianIncome = 4.17288476;
+	} else if (oceanProximity == 4) {
+		medianIncome = 4.005784801;
+	} else {
+		medianIncome = 4.230681918;
+	}
 
 	//Prepare the JSON for AWS API gateway post method input model parameter
 	var data = {
 		"housing_age": parseInt(housingAge),
 		"rooms_per_household": parseInt(roomsPerHousehold),
-		"median_income": parseInt(medianIncome),
-		"inland": parseInt(inland),
-		"island": parseInt(island),
-		"near_bay": parseInt(nearBay),
-		"near_ocean": parseInt(nearOcean),
-		"less_than_1_hr": parseInt(lessThan1Hr),
-		"housing_age_sq_ft": parseInt(homeArea)
+		"median_income": medianIncome,
+		"inland": oceanProximity == 1 ? 1 : 0,
+		"island": oceanProximity == 2 ? 1 : 0,
+		"near_bay": oceanProximity == 3 ? 1 : 0,
+		"near_ocean": oceanProximity == 4 ? 1 : 0,
+		"less_than_1_hr": oceanProximity == 5 ? 1 : 0,
+		"housing_age_sq_ft": houseAgeSq
 	  }
 
+	  console.log(JSON.stringify(data));
 	  // Call the AWS lambda function using AWS API Gateway POST method url with input model parameter
 	  // and display the predicted value returned by AWS Lambda that uses our prediction algorithm
 	  // from the ML output

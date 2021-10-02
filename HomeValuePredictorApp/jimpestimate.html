@@ -48,88 +48,22 @@
             </div>
           </div>  
           <div class="mb-3 row">
-            <label for="" class="col-sm-2 col-form-label">Median Income</label>
+            <label for="" class="col-sm-2 col-form-label">Ocean Proximity</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="txtMedianIncome" required>
-              <div class="invalid-feedback">
-                Required
-              </div>
-            </div>
-          </div>  
-          <div class="mb-3 row">
-            <label for="" class="col-sm-2 col-form-label">Home Area (sqft)</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="txtHomeArea" required>
-              <div class="invalid-feedback">
-                Required
-              </div>
-            </div>
-          </div>  
-          <div class="mb-3 row">
-            <label for="" class="col-sm-2 col-form-label">Is Home Located Inland</label>
-            <div class="col-sm-10">
-              <select id="selectInland" class="form-select" required>
+              <select id="selectOceanProximity" class="form-select" required>
                 <option selected disabled value="">Choose...</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
+                <option value="1">Inland</option>
+                <option value="2">Island</option>
+                <option value="3">Near Bay</option>
+                <option value="4">Near Ocean</option>
+                <option value="5">Less Than 1 Hr From The Ocean</option>
               </select>
               <div class="invalid-feedback">
-                Required
+                Required *
               </div>
             </div>
           </div>    
-          <div class="mb-3 row">
-            <label for="" class="col-sm-2 col-form-label">Is Home Located On a Island?</label>
-            <div class="col-sm-10">
-              <select id="selectIsland" class="form-select" required>
-                <option selected disabled value="">Choose...</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-              </select>
-              <div class="invalid-feedback">
-                Required
-              </div>
-            </div>
-          </div>      
-          <div class="mb-3 row">
-            <label for="" class="col-sm-2 col-form-label">Is Home Located By a Bay?</label>
-            <div class="col-sm-10">
-              <select id="selectBay" class="form-select" required>
-                <option selected disabled value="">Choose...</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-              </select>
-              <div class="invalid-feedback">
-                Required
-              </div>
-            </div>
-          </div>   
-          <div class="mb-3 row">
-            <label for="" class="col-sm-2 col-form-label">Is Home Located By The Ocean?</label>
-            <div class="col-sm-10">
-              <select id="selectOcean" class="form-select" required>
-                <option selected disabled value="">Choose...</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-              </select>
-              <div class="invalid-feedback">
-                Required
-              </div>
-            </div>
-          </div>   
-          <div class="mb-3 row">
-            <label for="" class="col-sm-2 col-form-label">Less Than 1 Hr From The Ocean?</label>
-            <div class="col-sm-10">
-              <select id="selectOneHr" class="form-select" required>
-                <option selected disabled value="">Choose...</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-              </select>
-              <div class="invalid-feedback">
-                Required
-              </div>
-            </div>
-          </div> 
+          
           <div class="mb-3 row">
             <label for="" class="col-sm-9 col-form-label"></label>
             <div class="col-sm-3">
@@ -152,6 +86,6 @@
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-  <script src="app.js"></script>
+  <script src="app copy.js"></script>
 </body>
 </html>
